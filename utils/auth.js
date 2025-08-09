@@ -6,7 +6,7 @@ const auth = async (req, res, next) => {
     return next();
   }
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbGxvQG1vbm90YWluLmNvbSIsImlhdCI6MTc1NDcxNTk2NSwiZXhwIjoxNzU0Nzk4NzY1fQ.TBca0mvK6O17JI66CEcdzxMSMDSFLOqnue";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbGxvQG1vbm90YWluLmNvbSIsImlhdCI6MTc1NDczMTY0MywiZXhwIjoxNzU0ODE0NDQzfQ.kK9VyabIDaUfE1apvEojUx8Pz4MGx56vz";
   //   const token = await req.headers.authorization.split(" ")[1];
   if (!token) {
     return res.status(400).json({ message: "トークンがありません" });

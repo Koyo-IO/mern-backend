@@ -72,7 +72,6 @@ app.delete("/item/delete/:id", auth, async (req, res) => {
     } else {
       throw new Error();
     }
-    return res.status(200).json({ message: "アイテム削除成功" });
   } catch (err) {
     return res.status(400).json({ message: "アイテム削除失敗" });
   }
@@ -96,7 +95,9 @@ app.post("/user/login", async (req, res) => {
     await connectDB();
     const savedUserData = await UserModel.findOne({ email: req.body.email });
     if (savedUserData) {
+      // ユーザーデータが存在する場合の処理
       if (req.body.password === savedUserData.password) {
+        // パスワードが正しい場合の処理
         const payload = {
           email: req.body.email,
         };
@@ -104,11 +105,13 @@ app.post("/user/login", async (req, res) => {
         console.log(token);
         return res.status(200).json({ message: "ログイン成功", token: token });
       } else {
+        // パスワードが間違っている場合の処理
         return res
           .status(400)
-          .json({ message: "ログイン失敗：パスワードが違います" });
+          .json({ message: "ログイン失敗：パスワードが間違っています" });
       }
     } else {
+      // ユーザーデータが存在しない場合の処理
       return res
         .status(400)
         .json({ message: "ログイン失敗：ユーザ登録をしてください" });
@@ -122,5 +125,5 @@ app.post("/user/login", async (req, res) => {
 const port = process.env.PORT || 5050;
 
 app.listen(port, () => {
-  console.log("Listening on localhost port 5050");
+  console.log(`Listening on localhost port ${port}`);
 });
